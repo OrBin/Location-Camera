@@ -4,7 +4,7 @@
     display: block;
 }
 
-.geolocation {
+.geolocation, .orientation {
     display: flex;
     justify-content: center;
 }

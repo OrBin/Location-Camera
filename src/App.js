@@ -3,18 +3,24 @@ import { geolocated } from "react-geolocated";
 import './App.css';
 import Camera from './Camera';
 import Geolocation from './Geolocation';
+import Orientation from './Orientation';
 
 
 class App extends Component {
-  state = {}
+  state = { coords: null, geolocationMessage: '', orientation: null}
   componentDidMount() {
     this.processLocation();
+    window.addEventListener('deviceorientationabsolute', this.handleOrientation, true);
   }
 
   componentDidUpdate(prevProps) {
     if (prevProps !== this.props) {
       this.processLocation();
     }
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('deviceorientationabsolute', this.handleOrientation, true);
   }
 
   processLocation = () => {
@@ -29,12 +35,17 @@ class App extends Component {
     }
   };
 
+  handleOrientation = event => {
+    this.setState({orientation: event})
+  };
+
   render = () => (
     <>
       <Geolocation
         geolocationMessage={this.state.geolocationMessage}
         coords={this.state.coords}
       />
+      <Orientation orientation={this.state.orientation}/>
       <Camera />
     </>
   );
