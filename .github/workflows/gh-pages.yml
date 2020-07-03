@@ -18,9 +18,14 @@ jobs:
           npm install
           npm run build
 
+      - name: Install SSH Client 🔑
+        uses: webfactory/ssh-agent@v0.2.0
+        with:
+          ssh-private-key: ${{ secrets.GH_PAGES_DEPLOY_KEY }}
+
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@releases/v3
         with:
-          GITHUB_TOKEN: ${{ secrets.GH_PAGES_DEPLOY_KEY }}
+          SSH: true
           BRANCH: gh-pages
           FOLDER: build
