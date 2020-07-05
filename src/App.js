@@ -54,7 +54,7 @@ class App extends Component {
     }
     this.setState({ypr: {yawDeg, pitchDeg, rollDeg}})
 
-    const [yawRad, pitchRad, rollRad] = [yawDeg, pitchDeg, rollDeg].map(toRadians)
+    const [yawRad, pitchRad] = [yawDeg, pitchDeg].map(toRadians)
 
     const east = Math.sin(yawRad);
     const north = Math.cos(yawRad);
