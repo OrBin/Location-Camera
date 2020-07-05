@@ -8,3 +8,8 @@
     display: flex;
     justify-content: center;
 }
+
+.map, .map-container {
+    height: 200px;
+    width: 100%;
+}
